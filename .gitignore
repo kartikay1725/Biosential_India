@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/raw/*
+data/processed/*
+data/sample/images/*
+*.csv
+*.tsv
+*.zip
+*.tar
+*.gz
+
+# Models
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
