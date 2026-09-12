@@ -1,39 +1,28 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 .venv/
 venv/
-env/
+
+# Environment / secrets
+.env
+.env.*
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Data
-data/raw/*
-data/processed/*
-data/sample/images/*
-*.csv
-*.tsv
-*.zip
-*.tar
-*.gz
+# Processed datasets
+data/processed/
 
-# Models
-*.pt
-*.pth
-*.onnx
+# Large generated files
+*.parquet
 *.pkl
-*.joblib
+*.pth
+*.pt
+*.h5
+*.hdf5
 
-# Environment
-.env
-.env.*
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
+# Images / model outputs
+data/raw/inaturalist/images/
+outputs/
+models/
