@@ -13,6 +13,7 @@ venv/
 
 # Processed datasets
 data/processed/
+data/raw/inaturalist/images/
 
 # Large generated files
 *.parquet
@@ -26,3 +27,19 @@ data/processed/
 data/raw/inaturalist/images/
 outputs/
 models/
+node_modules/
+
+# Next.js build outputs
+.next/
+out/
+build/
+dist/
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+data/raw/inaturalist/*.zip

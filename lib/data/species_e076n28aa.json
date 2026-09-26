@@ -1,0 +1,538 @@
+[
+  {
+    "scientific_name": "Columba livia",
+    "taxonomic_class": "Aves",
+    "occurrences": 21,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Psittacula krameri",
+    "taxonomic_class": "Aves",
+    "occurrences": 21,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Spilopelia senegalensis",
+    "taxonomic_class": "Aves",
+    "occurrences": 20,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Cinnyris asiaticus",
+    "taxonomic_class": "Aves",
+    "occurrences": 19,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Pycnonotus cafer",
+    "taxonomic_class": "Aves",
+    "occurrences": 18,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Streptopelia decaocto",
+    "taxonomic_class": "Aves",
+    "occurrences": 17,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Acridotheres tristis",
+    "taxonomic_class": "Aves",
+    "occurrences": 17,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Turdoides striata",
+    "taxonomic_class": "Aves",
+    "occurrences": 15,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Euodice malabarica",
+    "taxonomic_class": "Aves",
+    "occurrences": 12,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Copsychus fulicatus",
+    "taxonomic_class": "Aves",
+    "occurrences": 12,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Orthotomus sutorius",
+    "taxonomic_class": "Aves",
+    "occurrences": 12,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Passer domesticus",
+    "taxonomic_class": "Aves",
+    "occurrences": 12,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Upupa epops",
+    "taxonomic_class": "Aves",
+    "occurrences": 11,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Copsychus saularis",
+    "taxonomic_class": "Aves",
+    "occurrences": 9,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Psittacula eupatria",
+    "taxonomic_class": "Aves",
+    "occurrences": 8,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Ortygornis pondicerianus",
+    "taxonomic_class": "Aves",
+    "occurrences": 8,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Sturnia pagodarum",
+    "taxonomic_class": "Aves",
+    "occurrences": 7,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Corvus splendens",
+    "taxonomic_class": "Aves",
+    "occurrences": 7,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Centropus sinensis",
+    "taxonomic_class": "Aves",
+    "occurrences": 6,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Eudynamys scolopaceus",
+    "taxonomic_class": "Aves",
+    "occurrences": 6,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Motacilla alba",
+    "taxonomic_class": "Aves",
+    "occurrences": 6,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Pavo cristatus",
+    "taxonomic_class": "Aves",
+    "occurrences": 5,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Halcyon smyrnensis",
+    "taxonomic_class": "Aves",
+    "occurrences": 5,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Zosterops palpebrosus",
+    "taxonomic_class": "Aves",
+    "occurrences": 5,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Treron phoenicopterus",
+    "taxonomic_class": "Aves",
+    "occurrences": 5,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Clamator jacobinus",
+    "taxonomic_class": "Aves",
+    "occurrences": 4,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Hirundo smithii",
+    "taxonomic_class": "Aves",
+    "occurrences": 4,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Prinia socialis",
+    "taxonomic_class": "Aves",
+    "occurrences": 3,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Dicrurus macrocercus",
+    "taxonomic_class": "Aves",
+    "occurrences": 3,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Phylloscopus humei",
+    "taxonomic_class": "Aves",
+    "occurrences": 3,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Ocyceros birostris",
+    "taxonomic_class": "Aves",
+    "occurrences": 3,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Turdoides malcolmi",
+    "taxonomic_class": "Aves",
+    "occurrences": 3,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Ploceus philippinus",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Dendrocitta vagabunda",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Spilopelia chinensis",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Motacilla cinerea",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Anthus rufulus",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Psilopogon haemacephalus",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Gracupica contra",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Ardea coromanda",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Oenanthe fusca",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Merops orientalis",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Lonchura punctulata",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Vanellus indicus",
+    "taxonomic_class": "Aves",
+    "occurrences": 2,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Curruca curruca",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Anas poecilorhyncha",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Pernis ptilorhynchus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Ardeola grayii",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Alcedo atthis",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Pastor roseus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Hierococcyx varius",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Gymnoris xanthocollis",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Threskiornis melanocephalus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Motacilla flava",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Phylloscopus collybita",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Phylloscopus trochiloides",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Pycnonotus leucotis",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Iduna caligata",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Circus aeruginosus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Psilopogon zeylanicus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Merops persicus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Prinia gracilis",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Lanius excubitor",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Butastur teesa",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Prinia inornata",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Francolinus francolinus",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  },
+  {
+    "scientific_name": "Aquila fasciata",
+    "taxonomic_class": "Aves",
+    "occurrences": 1,
+    "data_source": "GBIF Verified Occurrence",
+    "bioclip_image_evaluable": true,
+    "bioclip_confidence": null
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "system_name": "BioSentinel India \u2014 Phase 3 Final System Integration",
+  "bioclip_species_identification": {
+    "top1_accuracy": 0.7894,
+    "top5_accuracy": 0.9287,
+    "macro_f1": 0.7827,
+    "status": "LOCKED"
+  },
+  "dataset_dimensions": {
+    "total_grid_year_units": 12913,
+    "unique_grid_cells": 2773,
+    "year_range": [
+      2018,
+      2024
+    ],
+    "screened_units_2024": 2630,
+    "high_screening_priority_2024": 186,
+    "persistent_high_priority_2024": 17
+  },
+  "statistical_models": {
+    "poisson_glm": {
+      "role": "PRIMARY EXPECTED-MEAN BASELINE",
+      "walk_forward_mae": 31.72,
+      "degrees_of_freedom": 10280
+    },
+    "negative_binomial_glm": {
+      "role": "OVERDISPERSION / UNCERTAINTY / ROBUSTNESS MODEL",
+      "aic": 112335.54,
+      "dispersion": 0.1742,
+      "walk_forward_mae": 39.01
+    },
+    "historical_median_baseline": {
+      "walk_forward_mae": 46.2
+    }
+  },
+  "sensitivity_analysis": {
+    "anomaly_heavy_vs_balanced_spearman": 0.9743,
+    "reliability_heavy_vs_balanced_spearman": 0.9569
+  },
+  "case_study_primary": "E076N28AA / 2024 (High Screening Priority)",
+  "case_study_sampling_artifact": "E078N09BC / 2024 (Effort-Driven Signal)"
+}

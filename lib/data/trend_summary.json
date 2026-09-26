@@ -1,0 +1,42 @@
+[
+  {
+    "category": "effort_driven_richness_growth",
+    "count": 5396,
+    "percentage": 41.8,
+    "mean_raw_slope": 13.71,
+    "mean_effort_slope": 0.326,
+    "mean_adjusted_slope": -0.022
+  },
+  {
+    "category": "effort_adjusted_stable",
+    "count": 5172,
+    "percentage": 40.1,
+    "mean_raw_slope": 4.67,
+    "mean_effort_slope": 0.071,
+    "mean_adjusted_slope": 0.037
+  },
+  {
+    "category": "effort_adjusted_increase",
+    "count": 1018,
+    "percentage": 7.9,
+    "mean_raw_slope": 24.93,
+    "mean_effort_slope": 0.304,
+    "mean_adjusted_slope": 0.239
+  },
+  {
+    "category": "insufficient_history",
+    "count": 923,
+    "percentage": 7.1,
+    "mean_raw_slope": 0.0,
+    "mean_effort_slope": 0.0,
+    "mean_adjusted_slope": 0.0
+  },
+  {
+    "category": "effort_adjusted_decrease",
+    "count": 404,
+    "percentage": 3.1,
+    "mean_raw_slope": -5.7,
+    "mean_effort_slope": 0.174,
+    "mean_adjusted_slope": -0.24
+  }
+]
