@@ -1,16 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getSystemSummary } from "@/lib/api/data-service";
+import { getBackendUrl } from "@/lib/config/backend";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const yearStr = req.nextUrl.searchParams.get("year");
+  const year = yearStr ? Number(yearStr) : 2024;
+
   try {
-    // Try live FastAPI backend first
-    const res = await fetch("http://127.0.0.1:8000/api/summary", { cache: "no-store" }).catch(() => null);
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/summary?year=${year}`, { cache: "no-store" }).catch(() => null);
     if (res && res.ok) {
       const data = await res.json();
       return NextResponse.json(data);
     }
   } catch {}
 
-  // Fallback to local data service
-  return NextResponse.json(getSystemSummary());
+  return NextResponse.json(getSystemSummary(year));
 }

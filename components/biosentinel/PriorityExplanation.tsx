@@ -11,11 +11,11 @@ export function PriorityExplanation({ record }: { record: GridYearRecord }) {
   return (
     <div className="space-y-5">
       {/* Header status */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-surface-raised rounded-lg border border-border">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-neutral-900/80 rounded-2xl border border-white/[0.08] backdrop-blur-xl shadow-md">
         <div>
-          <div className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Screening Priority</div>
-          <div className="text-xl font-bold font-mono text-foreground mt-0.5">
-            {record.priority_score.toFixed(1)} <span className="text-xs font-normal text-muted-foreground">/ 100</span>
+          <div className="text-[11px] text-neutral-400 uppercase tracking-wider font-medium">Screening Priority</div>
+          <div className="text-2xl font-bold font-mono text-white mt-0.5">
+            {record.priority_score.toFixed(1)} <span className="text-xs font-normal text-neutral-500">/ 100</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -26,13 +26,13 @@ export function PriorityExplanation({ record }: { record: GridYearRecord }) {
 
       {/* Effort Warning if applicable */}
       {isEffortDriven && (
-        <div className="p-3.5 rounded-lg border border-warning/30 bg-warning/10 text-xs space-y-1">
-          <div className="flex items-center gap-1.5 font-semibold text-warning">
-            <AlertTriangle className="h-4 w-4" />
+        <div className="p-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 backdrop-blur-xl text-xs space-y-1 shadow-md">
+          <div className="flex items-center gap-2 font-semibold text-amber-300">
+            <AlertTriangle className="h-4 w-4 text-amber-400" />
             Effort-Driven Signal Detected
           </div>
-          <p className="text-muted-foreground leading-relaxed">
-            Observation effort shifted by <span className="font-mono text-foreground">{formatPercentage(record.effort_change_pct)}</span>. 
+          <p className="text-neutral-300 leading-relaxed">
+            Observation effort shifted by <span className="font-mono text-white font-medium">{formatPercentage(record.effort_change_pct)}</span>. 
             Apparent richness changes coincide with observation volume fluctuations rather than confirmed ecological population decline.
           </p>
         </div>
@@ -41,12 +41,12 @@ export function PriorityExplanation({ record }: { record: GridYearRecord }) {
       {/* Evidence Breakdown */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
             Evidence Components ({record.evidence_score.toFixed(1)} / 100)
           </h4>
-          <span className="text-[11px] text-muted-foreground font-mono">Weight: 100%</span>
+          <span className="text-[11px] text-neutral-500 font-mono">Weight: 100%</span>
         </div>
-        <div className="space-y-2.5 p-3.5 bg-surface rounded-lg border border-border/80">
+        <div className="space-y-3 p-4 bg-neutral-900/60 rounded-2xl border border-white/[0.08] backdrop-blur-xl shadow-md">
           <EvidenceBar
             label="Baseline Expectation Deviation"
             value={Math.abs(record.relative_deviation)}
@@ -83,46 +83,46 @@ export function PriorityExplanation({ record }: { record: GridYearRecord }) {
       {/* Reliability Breakdown */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
             Reliability Support ({record.reliability_score.toFixed(1)} / 100)
           </h4>
-          <span className="text-[11px] text-muted-foreground font-mono">Penalty Factor</span>
+          <span className="text-[11px] text-neutral-500 font-mono">Penalty Factor</span>
         </div>
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="p-2.5 bg-surface rounded border border-border">
-            <div className="text-muted-foreground text-[11px]">Historical Baseline</div>
-            <div className="font-mono font-medium text-foreground mt-0.5">{record.baseline_years} years</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">Min 3 required</div>
+        <div className="grid grid-cols-2 gap-2.5 text-xs">
+          <div className="p-3 bg-neutral-900/60 rounded-xl border border-white/[0.08] backdrop-blur-xl">
+            <div className="text-neutral-400 text-[11px]">Historical Baseline</div>
+            <div className="font-mono font-medium text-white mt-1">{record.baseline_years} years</div>
+            <div className="text-[10px] text-neutral-500 mt-0.5">Min 3 required</div>
           </div>
-          <div className="p-2.5 bg-surface rounded border border-border">
-            <div className="text-muted-foreground text-[11px]">Observation Support</div>
-            <div className="font-mono font-medium text-foreground mt-0.5">{record.total_occurrences} records</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5 capitalize">{record.sampling_support_level} support</div>
+          <div className="p-3 bg-neutral-900/60 rounded-xl border border-white/[0.08] backdrop-blur-xl">
+            <div className="text-neutral-400 text-[11px]">Observation Support</div>
+            <div className="font-mono font-medium text-white mt-1">{record.total_occurrences} records</div>
+            <div className="text-[10px] text-neutral-500 mt-0.5 capitalize">{record.sampling_support_level} support</div>
           </div>
-          <div className="p-2.5 bg-surface rounded border border-border">
-            <div className="text-muted-foreground text-[11px]">Temporal Coverage</div>
-            <div className="font-mono font-medium text-foreground mt-0.5">{record.grid_temporal_coverage_pct?.toFixed(0) || 100}%</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">Study window span</div>
+          <div className="p-3 bg-neutral-900/60 rounded-xl border border-white/[0.08] backdrop-blur-xl">
+            <div className="text-neutral-400 text-[11px]">Temporal Coverage</div>
+            <div className="font-mono font-medium text-white mt-1">{record.grid_temporal_coverage_pct?.toFixed(0) || 100}%</div>
+            <div className="text-[10px] text-neutral-500 mt-0.5">Study window span</div>
           </div>
-          <div className="p-2.5 bg-surface rounded border border-border">
-            <div className="text-muted-foreground text-[11px]">Method Agreement</div>
-            <div className="font-mono font-medium text-foreground mt-0.5">{record.method_agreement_count} / 6</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">Consensus models</div>
+          <div className="p-3 bg-neutral-900/60 rounded-xl border border-white/[0.08] backdrop-blur-xl">
+            <div className="text-neutral-400 text-[11px]">Method Agreement</div>
+            <div className="font-mono font-medium text-white mt-1">{record.method_agreement_count} / 6</div>
+            <div className="text-[10px] text-neutral-500 mt-0.5">Consensus models</div>
           </div>
         </div>
       </div>
 
       {/* Explanation text */}
       <div className="space-y-2">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Analytical Explanation</div>
-        <p className="text-xs leading-relaxed text-foreground/90 bg-surface-raised p-3 rounded-lg border border-border">
+        <div className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Analytical Explanation</div>
+        <p className="text-xs leading-relaxed text-neutral-300 bg-neutral-900/60 p-4 rounded-2xl border border-white/[0.08] backdrop-blur-xl shadow-md">
           {record.explanation}
         </p>
       </div>
 
       {/* Scientific caveat */}
-      <div className="p-3 bg-surface rounded-lg border border-border/70 text-[11px] text-muted-foreground flex items-start gap-2">
-        <Info className="h-4 w-4 shrink-0 text-info mt-0.5" />
+      <div className="p-3.5 bg-neutral-900/40 rounded-2xl border border-white/[0.06] text-[11px] text-neutral-400 flex items-start gap-2.5 backdrop-blur-xl">
+        <Info className="h-4 w-4 shrink-0 text-cyan-400 mt-0.5" />
         <div>
           <strong className="text-foreground/80">Screening Protocol Notice:</strong> This score represents an observation-derived prioritization index for field investigation. It does not establish ecological causation, habitat destruction, or biological population collapse.
         </div>

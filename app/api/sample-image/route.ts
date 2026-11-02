@@ -4,16 +4,11 @@ import path from "path";
 
 export async function GET() {
   try {
-    // Find a real test fauna image
     const candidatePath = path.join(
       process.cwd(),
       "data",
-      "raw",
-      "inaturalist",
-      "images",
-      "test",
-      "329TJ__Cucumis_maderaspatanus",
-      "3070512098__001ada7bdfc5.jpg"
+      "samples",
+      "sample_columba_livia.jpg"
     );
 
     if (fs.existsSync(candidatePath)) {

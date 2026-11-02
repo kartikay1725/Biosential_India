@@ -1,14 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getMapPoints } from "@/lib/api/data-service";
+import { getBackendUrl } from "@/lib/config/backend";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const yearStr = req.nextUrl.searchParams.get("year");
+  const year = yearStr ? Number(yearStr) : 2024;
+
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/points", { cache: "no-store" }).catch(() => null);
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/points?year=${year}`, { cache: "no-store" }).catch(() => null);
     if (res && res.ok) {
       const data = await res.json();
       return NextResponse.json(data);
     }
   } catch {}
 
-  return NextResponse.json(getMapPoints());
+  return NextResponse.json(getMapPoints(year));
 }

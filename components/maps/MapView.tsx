@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { MapPoint } from "@/types/biosentinel";
+import React, { useState } from "react";
+import { MapPoint, OccurrencePoint } from "@/types/biosentinel";
 import { formatCoordinates, formatPriority, formatPercentage } from "@/lib/formatting/formatters";
-import { Layers, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Layers, MapPin, ExternalLink, Sparkles } from "lucide-react";
 
 export type MapLayer = "priority" | "anomaly" | "reliability" | "effort" | "trend";
 
@@ -12,6 +11,10 @@ interface MapViewProps {
   points: MapPoint[];
   selectedCell?: string | null;
   onSelectCell?: (cellCode: string) => void;
+  speciesPoints?: OccurrencePoint[];
+  selectedOccurrence?: OccurrencePoint | null;
+  onSelectOccurrence?: (pt: OccurrencePoint) => void;
+  selectedYear?: number;
   initialLayer?: MapLayer;
   height?: string;
 }
@@ -20,11 +23,16 @@ export function MapView({
   points,
   selectedCell,
   onSelectCell,
+  speciesPoints = [],
+  selectedOccurrence,
+  onSelectOccurrence,
+  selectedYear = 2024,
   initialLayer = "priority",
   height = "h-[560px]",
 }: MapViewProps) {
   const [activeLayer, setActiveLayer] = useState<MapLayer>(initialLayer);
   const [hoveredPoint, setHoveredPoint] = useState<MapPoint | null>(null);
+  const [hoveredOccurrence, setHoveredOccurrence] = useState<OccurrencePoint | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // India geographical bounding box
@@ -48,7 +56,7 @@ export function MapView({
     switch (activeLayer) {
       case "priority":
         if (pt.priority >= 38.42) return "#ef4444"; // red/rose high priority
-        if (pt.priority >= 30.10) return "#f59e0b"; // amber moderate
+        if (pt.priority >= 30.1) return "#f59e0b"; // amber moderate
         return "#10b981"; // emerald low
       case "anomaly":
         if (pt.deviation <= -25) return "#ef4444";
@@ -148,7 +156,7 @@ export function MapView({
             );
           })}
 
-          {/* Render 2,630 Grid Points */}
+          {/* Render Screened Grid Cell Centroids */}
           {points.map((pt) => {
             const { x, y } = project(pt.lat, pt.lon);
             const isSelected = selectedCell === pt.cell;
@@ -167,15 +175,58 @@ export function MapView({
                 strokeWidth={isSelected ? 2 : isHero ? 1.5 : 0.5}
                 opacity={isSelected ? 1 : 0.85}
                 className="cursor-pointer transition-all duration-150 hover:opacity-100 hover:scale-125"
-                onMouseEnter={() => setHoveredPoint(pt)}
+                onMouseEnter={() => {
+                  setHoveredPoint(pt);
+                  setHoveredOccurrence(null);
+                }}
                 onMouseLeave={() => setHoveredPoint(null)}
                 onClick={() => onSelectCell && onSelectCell(pt.cell)}
               />
             );
           })}
+
+          {/* Render Verified Individual Species Occurrence Points (Exact GPS Coordinates) */}
+          {speciesPoints.map((sp, idx) => {
+            const { x, y } = project(sp.lat, sp.lon);
+            const isSelected = selectedOccurrence?.gbif_id === sp.gbif_id;
+
+            return (
+              <g
+                key={`sp-${sp.gbif_id}-${idx}`}
+                className="cursor-pointer transition-all duration-200"
+                onMouseEnter={() => {
+                  setHoveredOccurrence(sp);
+                  setHoveredPoint(null);
+                }}
+                onMouseLeave={() => setHoveredOccurrence(null)}
+                onClick={() => onSelectOccurrence && onSelectOccurrence(sp)}
+              >
+                {/* Outer pulsing beacon ring */}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={isSelected ? 11 : 8}
+                  fill="none"
+                  stroke="#06b6d4"
+                  strokeWidth={1.5}
+                  opacity={0.8}
+                  className="animate-pulse"
+                />
+                {/* Inner glowing diamond/marker */}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={isSelected ? 5 : 3.5}
+                  fill="#22d3ee"
+                  stroke="#ffffff"
+                  strokeWidth={1.5}
+                />
+              </g>
+            );
+          })}
         </svg>
 
-        {/* Floating Tooltip */}
+        {/* Floating Tooltip for Grid Unit */}
         {hoveredPoint && (
           <div
             className="absolute z-20 pointer-events-none bg-card/95 border border-border p-2.5 rounded-lg shadow-xl text-xs space-y-1"
@@ -188,6 +239,7 @@ export function MapView({
               <span>{hoveredPoint.cell}</span>
               <span className="text-[10px] text-muted-foreground">{formatCoordinates(hoveredPoint.lat, hoveredPoint.lon)}</span>
             </div>
+            <div className="text-[10px] text-muted-foreground">0.25° Grid Unit Centroid</div>
             <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[11px] pt-1 border-t border-border">
               <span className="text-muted-foreground">Priority:</span>
               <span className="font-mono font-semibold text-foreground text-right">{formatPriority(hoveredPoint.priority)}</span>
@@ -203,11 +255,36 @@ export function MapView({
             <div className="text-[10px] text-accent pt-0.5">Click to view complete evidence</div>
           </div>
         )}
+
+        {/* Floating Tooltip for Species Individual Occurrence Point */}
+        {hoveredOccurrence && (
+          <div
+            className="absolute z-20 pointer-events-none bg-card/95 border border-cyan-500/60 p-3 rounded-lg shadow-2xl text-xs space-y-1.5 max-w-xs"
+            style={{
+              left: `${Math.min(mousePos.x + 14, 560)}px`,
+              top: `${Math.min(mousePos.y + 14, 420)}px`,
+            }}
+          >
+            <div className="flex items-center gap-1.5 font-bold text-cyan-400 font-mono text-[11px]">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Verified Species Observation</span>
+            </div>
+            <div className="font-mono text-[11px] text-foreground">
+              {formatCoordinates(hoveredOccurrence.lat, hoveredOccurrence.lon)}
+            </div>
+            <div className="text-[11px] text-muted-foreground space-y-0.5 pt-1 border-t border-border">
+              <div>Region: <strong className="text-foreground">{hoveredOccurrence.state}</strong></div>
+              <div>Date: <span className="font-mono text-foreground">{hoveredOccurrence.date?.slice(0, 10) || "Recorded"}</span></div>
+              <div>Observer: <span className="text-foreground">{hoveredOccurrence.observer}</span></div>
+              <div className="text-[10px] text-muted-foreground/80 pt-0.5">Exact field GPS from verified photo observation</div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom Legend */}
       <div className="bg-card/95 border-t border-border px-3.5 py-2 text-xs flex flex-wrap items-center justify-between gap-3 text-muted-foreground">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <span className="font-semibold text-foreground text-[11px] uppercase tracking-wider">Legend:</span>
           {activeLayer === "priority" && (
             <>
@@ -237,9 +314,24 @@ export function MapView({
               <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-danger inline-block" /> Adjusted Decrease</div>
             </>
           )}
+
+          {/* Spatial representation symbol distinction */}
+          <div className="flex items-center gap-3 border-l border-border/70 pl-3">
+            <div className="flex items-center gap-1 text-[11px]">
+              <span className="w-2 h-2 rounded-full bg-muted-foreground/60 inline-block" />
+              <span>0.25° Grid Centroid</span>
+            </div>
+            {speciesPoints.length > 0 && (
+              <div className="flex items-center gap-1 text-[11px] text-cyan-400 font-medium">
+                <span className="w-2.5 h-2.5 rounded-full border border-cyan-300 bg-cyan-400 inline-block" />
+                <span>Verified Field Observation (Exact GPS)</span>
+              </div>
+            )}
+          </div>
         </div>
+
         <div className="text-[11px] font-mono">
-          2,630 Terrestrial Units Screened (2024)
+          {points.length.toLocaleString()} Terrestrial Units Screened ({selectedYear})
         </div>
       </div>
     </div>

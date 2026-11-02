@@ -1,77 +1,99 @@
 "use client";
 
 import React, { useState } from "react";
-import { getTopPriorityUnits, getTop100Units, getGridRecord } from "@/lib/api/data-service";
+import { getTopPriorityUnits, getTop100Units, getGridRecord, getAnnualSummary } from "@/lib/api/data-service";
+import { useSelectedYear } from "@/components/context/YearContext";
 import { PriorityBadge, ReliabilityBadge, DiagnosticBadge } from "@/components/biosentinel/StatusBadge";
 import { GridDetailSheet } from "@/components/biosentinel/GridDetailSheet";
-import { formatCoordinates, formatPriority, formatPercentage, formatSigma } from "@/lib/formatting/formatters";
+import { formatCoordinates, formatPriority, formatPercentage, formatSigma, formatNumber } from "@/lib/formatting/formatters";
 import { GridYearRecord } from "@/types/biosentinel";
 import { Flame, ShieldAlert, Sparkles, Filter, CheckCircle2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function PriorityPage() {
-  const topPriorityUnits = getTopPriorityUnits(); // 186 units
-  const persistentUnits = topPriorityUnits.filter((r) => r.persistence_count >= 2); // 17 units
+  const { selectedYear } = useSelectedYear();
+  const annual = getAnnualSummary(selectedYear);
+  const topPriorityUnits = getTopPriorityUnits(selectedYear);
+  const persistentUnits = topPriorityUnits.filter((r) => r.persistence_count >= 2);
   const top25 = topPriorityUnits.slice(0, 25);
-  const top100 = topPriorityUnits.slice(0, 100);
+  const top100 = getTop100Units(selectedYear);
 
   const [selectedCell, setSelectedCell] = useState<GridYearRecord | null>(null);
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="space-y-1.5 pb-4 border-b border-border">
-        <div className="flex items-center gap-2">
-          <Flame className="h-5 w-5 text-danger" />
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            2024 Priority Screening Registry
-          </h1>
+      <div className="space-y-2 pb-5 border-b border-white/[0.08]">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-rose-500/20 via-rose-500/10 to-transparent border border-rose-500/30 flex items-center justify-center text-rose-400 shadow-[0_0_20px_rgba(244,63,94,0.15)]">
+              <Flame className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                  {selectedYear} Priority Screening Registry
+                </h1>
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                  DECOUPLED FORMULATION
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+                Screening units prioritized by:{" "}
+                <code className="text-emerald-300 bg-neutral-900/80 px-2 py-0.5 rounded-lg border border-white/[0.08] font-mono text-xs">
+                  Priority = Evidence × (Reliability / 100)
+                </code>
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-xs sm:text-sm text-muted-foreground">
-          Screening units prioritized by decoupled formulation:{" "}
-          <code className="text-foreground bg-surface px-1.5 py-0.5 rounded border border-border">
-            Priority = Evidence × (Reliability / 100)
-          </code>
-        </p>
       </div>
 
       {/* Hero Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-4 rounded-lg bg-card border border-border">
-          <div className="text-xs uppercase text-muted-foreground font-medium">High Priority Units</div>
-          <div className="text-2xl font-bold font-mono text-danger mt-1">186</div>
-          <div className="text-xs text-muted-foreground mt-0.5">≥ 38.42 (95th percentile)</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-white/[0.08] backdrop-blur-xl hover:border-rose-500/30 transition-all shadow-lg hover:shadow-rose-950/20 group">
+          <div className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium">High Priority Units</div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-rose-400 mt-1.5 group-hover:scale-[1.02] transition-transform">
+            {annual.high_screening_priority}
+          </div>
+          <div className="text-[11px] text-neutral-500 mt-1">≥ 38.42 (95th percentile)</div>
         </div>
-        <div className="p-4 rounded-lg bg-card border border-border">
-          <div className="text-xs uppercase text-muted-foreground font-medium">Persistent Candidates</div>
-          <div className="text-2xl font-bold font-mono text-warning mt-1">17</div>
-          <div className="text-xs text-muted-foreground mt-0.5">≥ 2 consecutive supported years</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-white/[0.08] backdrop-blur-xl hover:border-amber-500/30 transition-all shadow-lg hover:shadow-amber-950/20 group">
+          <div className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium">Persistent Candidates</div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-400 mt-1.5 group-hover:scale-[1.02] transition-transform">
+            {annual.persistent_high_priority}
+          </div>
+          <div className="text-[11px] text-neutral-500 mt-1">≥ 2 consecutive supported years</div>
         </div>
-        <div className="p-4 rounded-lg bg-card border border-border">
-          <div className="text-xs uppercase text-muted-foreground font-medium">Moderate Priority</div>
-          <div className="text-2xl font-bold font-mono text-foreground mt-1">520</div>
-          <div className="text-xs text-muted-foreground mt-0.5">30.10 – 38.42 threshold</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-white/[0.08] backdrop-blur-xl hover:border-white/20 transition-all shadow-lg group">
+          <div className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium">Moderate Priority</div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-white mt-1.5 group-hover:scale-[1.02] transition-transform">
+            {annual.moderate_screening_priority}
+          </div>
+          <div className="text-[11px] text-neutral-500 mt-1">30.10 – 38.42 threshold</div>
         </div>
-        <div className="p-4 rounded-lg bg-card border border-border">
-          <div className="text-xs uppercase text-muted-foreground font-medium">Total Screened</div>
-          <div className="text-2xl font-bold font-mono text-foreground mt-1">2,630</div>
-          <div className="text-xs text-muted-foreground mt-0.5">Eligible 2024 units</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-white/[0.08] backdrop-blur-xl hover:border-emerald-500/30 transition-all shadow-lg hover:shadow-emerald-950/20 group">
+          <div className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium">Total Screened</div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-white mt-1.5 group-hover:scale-[1.02] transition-transform">
+            {formatNumber(annual.screened_units)}
+          </div>
+          <div className="text-[11px] text-neutral-500 mt-1">Eligible {selectedYear} units</div>
         </div>
       </div>
 
       {/* Tabbed Priority Subsets */}
       <Tabs defaultValue="all-high" className="space-y-4">
-        <TabsList className="bg-surface border border-border">
-          <TabsTrigger value="all-high">All 186 High Priority</TabsTrigger>
-          <TabsTrigger value="persistent">17 Persistent Candidates</TabsTrigger>
+        <TabsList>
+          <TabsTrigger value="all-high">All {topPriorityUnits.length} High Priority</TabsTrigger>
+          <TabsTrigger value="persistent">{persistentUnits.length} Persistent Candidates</TabsTrigger>
           <TabsTrigger value="top25">Top 25 Priority</TabsTrigger>
           <TabsTrigger value="top100">Top 100 Registry</TabsTrigger>
         </TabsList>
 
         {/* Tab 1: All 186 Units */}
         <TabsContent value="all-high" className="space-y-3">
-          <div className="border border-border rounded-lg overflow-hidden bg-card">
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-neutral-900/50 backdrop-blur-xl shadow-xl">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -137,10 +159,13 @@ export default function PriorityPage() {
 
         {/* Tab 2: 17 Persistent Candidates */}
         <TabsContent value="persistent" className="space-y-3">
-          <div className="p-3 bg-surface rounded-lg border border-border text-xs text-muted-foreground">
-            Multi-year persistent anomaly candidates have demonstrated statistical departure for 2 or more consecutive supported evaluation years.
+          <div className="p-4 bg-amber-500/5 rounded-2xl border border-amber-500/20 text-xs text-amber-200/90 backdrop-blur-xl flex items-center gap-2.5">
+            <ShieldAlert className="h-4 w-4 text-amber-400 shrink-0" />
+            <span>
+              Multi-year persistent anomaly candidates have demonstrated statistical departure for 2 or more consecutive supported evaluation years.
+            </span>
           </div>
-          <div className="border border-border rounded-lg overflow-hidden bg-card">
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-neutral-900/50 backdrop-blur-xl shadow-xl">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -198,7 +223,7 @@ export default function PriorityPage() {
 
         {/* Tab 3: Top 25 */}
         <TabsContent value="top25" className="space-y-3">
-          <div className="border border-border rounded-lg overflow-hidden bg-card">
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-neutral-900/50 backdrop-blur-xl shadow-xl">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -240,7 +265,7 @@ export default function PriorityPage() {
 
         {/* Tab 4: Top 100 */}
         <TabsContent value="top100" className="space-y-3">
-          <div className="border border-border rounded-lg overflow-hidden bg-card">
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-neutral-900/50 backdrop-blur-xl shadow-xl">
             <Table>
               <TableHeader>
                 <TableRow>

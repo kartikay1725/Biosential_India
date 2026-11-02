@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { getTop100Units } from "@/lib/api/data-service";
+import { useSelectedYear } from "@/components/context/YearContext";
 import { PriorityBadge, ReliabilityBadge, DiagnosticBadge } from "@/components/biosentinel/StatusBadge";
 import { GridDetailSheet } from "@/components/biosentinel/GridDetailSheet";
 import { formatCoordinates, formatPriority, formatPercentage, formatSigma } from "@/lib/formatting/formatters";
@@ -10,7 +11,8 @@ import { AlertTriangle, Filter, Search } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function AnomaliesPage() {
-  const allUnits = getTop100Units();
+  const { selectedYear } = useSelectedYear();
+  const allUnits = getTop100Units(selectedYear);
 
   const [search, setSearch] = useState("");
   const [minAgreement, setMinAgreement] = useState<number>(0);
@@ -29,38 +31,49 @@ export default function AnomaliesPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="space-y-1.5 pb-4 border-b border-border">
-        <div className="flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5 text-warning" />
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Multi-Detector Anomaly Explorer
-          </h1>
+      <div className="space-y-2 pb-5 border-b border-white/[0.08]">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-amber-500/20 via-amber-500/10 to-transparent border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
+              <AlertTriangle className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                  Multi-Detector Anomaly Explorer ({selectedYear})
+                </h1>
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  CONSENSUS AUDIT
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+                Consensus anomalies for {selectedYear} evaluated across Poisson GLM, Negative Binomial, Baseline IQR, and Isolation Forest detectors.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-xs sm:text-sm text-muted-foreground">
-          Consensus anomalies evaluated across Poisson GLM, Negative Binomial, Baseline IQR, and Isolation Forest detectors.
-        </p>
       </div>
 
       {/* Filter Bar */}
-      <div className="p-3.5 bg-card rounded-lg border border-border flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="p-4 bg-neutral-900/60 rounded-2xl border border-white/[0.08] backdrop-blur-xl flex flex-wrap items-center justify-between gap-3 text-xs shadow-lg">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative">
-            <Search className="h-3.5 w-3.5 text-muted-foreground absolute left-2.5 top-1/2 -translate-y-1/2" />
+            <Search className="h-4 w-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search Cell ID..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-8 pl-8 pr-3 text-xs bg-surface border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none w-44"
+              className="h-9 pl-9 pr-3 text-xs bg-neutral-900/80 border border-white/[0.08] focus:border-amber-500/50 rounded-xl text-white placeholder:text-neutral-500 focus:outline-none w-48 sm:w-56 transition-all"
             />
           </div>
 
-          <div className="flex items-center gap-1.5">
-            <span className="text-muted-foreground">Min Agreement:</span>
+          <div className="flex items-center gap-2">
+            <span className="text-neutral-400 font-medium">Min Agreement:</span>
             <select
               value={minAgreement}
               onChange={(e) => setMinAgreement(Number(e.target.value))}
-              className="h-8 px-2 text-xs bg-surface border border-border rounded-md text-foreground focus:outline-none"
+              className="h-9 px-3 text-xs bg-neutral-900/80 border border-white/[0.08] focus:border-amber-500/50 rounded-xl text-neutral-200 focus:outline-none transition-all cursor-pointer"
             >
               <option value={0}>Any Consensus (0+)</option>
               <option value={2}>2+ Detectors</option>
@@ -69,12 +82,12 @@ export default function AnomaliesPage() {
             </select>
           </div>
 
-          <div className="flex items-center gap-1.5">
-            <span className="text-muted-foreground">Signal Diagnostic:</span>
+          <div className="flex items-center gap-2">
+            <span className="text-neutral-400 font-medium">Signal Diagnostic:</span>
             <select
               value={filterDiagnostic}
               onChange={(e) => setFilterDiagnostic(e.target.value)}
-              className="h-8 px-2 text-xs bg-surface border border-border rounded-md text-foreground focus:outline-none"
+              className="h-9 px-3 text-xs bg-neutral-900/80 border border-white/[0.08] focus:border-amber-500/50 rounded-xl text-neutral-200 focus:outline-none transition-all cursor-pointer"
             >
               <option value="all">All Diagnostics</option>
               <option value="robust_multimethod_signal">Multi-Method Signal</option>
@@ -84,13 +97,13 @@ export default function AnomaliesPage() {
           </div>
         </div>
 
-        <div className="font-mono text-muted-foreground">
-          Showing <span className="text-foreground font-semibold">{filteredData.length}</span> units
+        <div className="font-mono text-xs text-neutral-400">
+          Showing <span className="text-emerald-400 font-bold">{filteredData.length}</span> units
         </div>
       </div>
 
       {/* Table */}
-      <div className="border border-border rounded-lg overflow-hidden bg-card">
+      <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-neutral-900/50 backdrop-blur-xl shadow-xl">
         <Table>
           <TableHeader>
             <TableRow>
@@ -110,13 +123,13 @@ export default function AnomaliesPage() {
             {filteredData.map((row) => (
               <TableRow
                 key={row.eqdcellcode}
-                className="cursor-pointer hover:bg-surface-hover/70"
+                className="cursor-pointer hover:bg-white/[0.04] transition-colors"
                 onClick={() => setSelectedRecord(row)}
               >
-                <TableCell className="font-mono font-medium text-xs text-foreground">
+                <TableCell className="font-mono font-medium text-xs text-white">
                   {row.eqdcellcode}
                 </TableCell>
-                <TableCell className="text-xs font-mono text-right text-foreground">
+                <TableCell className="text-xs font-mono text-right text-white">
                   {row.species_richness}
                 </TableCell>
                 <TableCell className="text-xs font-mono text-right text-info">
@@ -132,7 +145,7 @@ export default function AnomaliesPage() {
                   {formatSigma(row.standardized_residual)}
                 </TableCell>
                 <TableCell className="text-xs font-mono text-center">
-                  <span className="px-1.5 py-0.5 rounded bg-surface border border-border">
+                  <span className="px-2 py-0.5 rounded-full bg-neutral-900/80 border border-white/[0.08] text-neutral-300 text-[11px]">
                     {row.method_agreement_count} / 6
                   </span>
                 </TableCell>

@@ -135,6 +135,76 @@ export interface SystemSummary {
   };
   case_study_primary: string;
   case_study_sampling_artifact: string;
+  selected_year?: number;
+  screened_units_year?: number;
+  high_screening_priority_year?: number;
+  persistent_high_priority_year?: number;
+}
+
+export interface AnnualSummaryRecord {
+  year: number;
+  screened_units: number;
+  high_screening_priority: number;
+  moderate_screening_priority: number;
+  low_screening_priority: number;
+  persistent_high_priority: number;
+  total_occurrences: number;
+  mean_richness: number;
+  mean_effort: number;
+  effort_driven_count: number;
+  robust_multimethod_count: number;
+  expected_pattern_count: number;
+}
+
+export interface OccurrencePoint {
+  gbif_id: string;
+  occurrence_url: string;
+  lat: number;
+  lon: number;
+  year: number | null;
+  date: string | null;
+  state: string;
+  image_url: string | null;
+  observer: string;
+  license: string;
+  basis_of_record: string;
+  is_individual_point: boolean;
+}
+
+export interface SpeciesCatalogEntry {
+  scientific_name: string;
+  accepted_scientific_name: string;
+  common_name: string | null;
+  species_key: string;
+  taxonomy: {
+    kingdom: string;
+    phylum: string;
+    taxonomic_class: string;
+    order: string;
+    family: string;
+    genus: string;
+  };
+  bioclip_class_index: number;
+  in_bioclip_model: boolean;
+  manifest_verified_records_count: number;
+  manifest_years_distribution: Record<string, number>;
+  historical_gbif_totals: {
+    total_occurrences_all_time?: number;
+    occupied_grids_all_time?: number;
+    observed_years_count?: number;
+    grid_occupancy_pct?: number;
+    relative_observation_pct?: number;
+  };
+  earliest_manifest_year: number;
+  latest_manifest_year: number;
+  states_recorded: string[];
+  occurrence_points: OccurrencePoint[];
+  provenance: {
+    primary_source: string;
+    image_license: string;
+    spatial_representation: string;
+    epistemic_notice: string;
+  };
 }
 
 export interface SpeciesRecord {
@@ -154,3 +224,4 @@ export interface TrendCategorySummary {
   mean_effort_slope: number;
   mean_adjusted_slope: number;
 }
+

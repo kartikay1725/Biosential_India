@@ -85,21 +85,32 @@ export default function MethodologyPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="space-y-1.5 pb-4 border-b border-border">
-        <div className="flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-accent" />
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Analytical Pipeline Methodology
-          </h1>
+      <div className="space-y-2 pb-5 border-b border-white/[0.08]">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-emerald-500/10 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
+              <BookOpen className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                  Analytical Pipeline Methodology
+                </h1>
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  8-STAGE ARCHITECTURE
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+                Step-by-step mathematical and architectural stages converting raw occurrences into explainable screening signals.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-xs sm:text-sm text-muted-foreground">
-          Step-by-step mathematical and architectural stages converting raw occurrences into explainable screening signals.
-        </p>
       </div>
 
       {/* Visual Pipeline Flow */}
-      <div className="p-4 bg-card border border-border rounded-xl space-y-3">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="p-5 bg-neutral-900/60 border border-white/[0.08] rounded-2xl backdrop-blur-xl shadow-xl space-y-3.5">
+        <h3 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
           End-to-End Pipeline Traceability
         </h3>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
@@ -107,15 +118,15 @@ export default function MethodologyPage() {
             <React.Fragment key={s.num}>
               <button
                 onClick={() => setExpandedStage(s.num)}
-                className={`px-2.5 py-1 rounded transition-colors border ${
+                className={`px-3 py-1.5 rounded-xl transition-all border ${
                   expandedStage === s.num
-                    ? "bg-accent/20 text-accent border-accent/40 font-bold"
-                    : "bg-surface text-muted-foreground border-border hover:text-foreground"
+                    ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-bold shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                    : "bg-neutral-900/80 text-neutral-400 border-white/[0.08] hover:text-white"
                 }`}
               >
                 Stage {s.num}: {s.title.split(" ")[0]}
               </button>
-              {idx < stages.length - 1 && <span className="text-muted-foreground/50">→</span>}
+              {idx < stages.length - 1 && <span className="text-neutral-600">→</span>}
             </React.Fragment>
           ))}
         </div>
@@ -128,46 +139,46 @@ export default function MethodologyPage() {
           return (
             <div
               key={s.num}
-              className="border border-border rounded-lg bg-card overflow-hidden transition-colors"
+              className="border border-white/[0.08] rounded-2xl bg-neutral-900/60 backdrop-blur-xl overflow-hidden transition-all shadow-lg"
             >
               <button
                 onClick={() => setExpandedStage(isOpen ? null : s.num)}
-                className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-raised transition-colors"
+                className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-white/[0.03] transition-colors"
               >
-                <div className="flex items-center gap-3">
-                  <span className="h-6 w-6 rounded bg-surface border border-border font-mono text-xs font-bold text-accent flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3.5">
+                  <span className="h-7 w-7 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs font-bold text-emerald-400 flex items-center justify-center shrink-0">
                     {s.num}
                   </span>
-                  <span className="font-semibold text-sm text-foreground">{s.title}</span>
+                  <span className="font-semibold text-sm sm:text-base text-white">{s.title}</span>
                 </div>
                 {isOpen ? (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  <ChevronDown className="h-4 w-4 text-emerald-400" />
                 ) : (
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  <ChevronRight className="h-4 w-4 text-neutral-500" />
                 )}
               </button>
 
               {isOpen && (
-                <div className="p-4 pt-0 border-t border-border bg-surface/40 space-y-3 text-xs animate-in fade-in-50 duration-200">
+                <div className="p-5 pt-0 border-t border-white/[0.06] bg-neutral-900/30 space-y-3 text-xs animate-in fade-in-50 duration-200">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
-                    <div className="p-3 rounded bg-surface border border-border space-y-1">
-                      <span className="text-[11px] font-bold text-muted-foreground uppercase">Inputs:</span>
-                      <p className="text-foreground/90">{s.input}</p>
+                    <div className="p-3.5 rounded-xl bg-neutral-900/80 border border-white/[0.08] space-y-1">
+                      <span className="text-[11px] font-bold text-neutral-400 uppercase">Inputs:</span>
+                      <p className="text-neutral-200">{s.input}</p>
                     </div>
-                    <div className="p-3 rounded bg-surface border border-border space-y-1">
-                      <span className="text-[11px] font-bold text-muted-foreground uppercase">Outputs:</span>
-                      <p className="text-foreground/90 font-mono text-[11px]">{s.output}</p>
+                    <div className="p-3.5 rounded-xl bg-neutral-900/80 border border-white/[0.08] space-y-1">
+                      <span className="text-[11px] font-bold text-neutral-400 uppercase">Outputs:</span>
+                      <p className="text-emerald-300 font-mono text-[11px]">{s.output}</p>
                     </div>
                   </div>
 
-                  <div className="p-3 rounded bg-surface border border-border space-y-1">
-                    <span className="text-[11px] font-bold text-muted-foreground uppercase">Mathematical Method:</span>
-                    <p className="text-foreground/90 leading-relaxed">{s.method}</p>
+                  <div className="p-3.5 rounded-xl bg-neutral-900/80 border border-white/[0.08] space-y-1">
+                    <span className="text-[11px] font-bold text-neutral-400 uppercase">Mathematical Method:</span>
+                    <p className="text-neutral-300 leading-relaxed">{s.method}</p>
                   </div>
 
-                  <div className="p-3 rounded bg-surface-raised border border-accent/20 space-y-1">
-                    <span className="text-[11px] font-bold text-accent uppercase">Why It Matters for Screening:</span>
-                    <p className="text-foreground leading-relaxed">{s.whyItMatters}</p>
+                  <div className="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/20 space-y-1">
+                    <span className="text-[11px] font-bold text-emerald-400 uppercase">Why It Matters for Screening:</span>
+                    <p className="text-neutral-200 leading-relaxed">{s.whyItMatters}</p>
                   </div>
                 </div>
               )}
