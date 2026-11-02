@@ -26,7 +26,6 @@ data/raw/inaturalist/images/
 # Images / model outputs
 data/raw/inaturalist/images/
 outputs/
-models/
 node_modules/
 
 # Next.js build outputs
